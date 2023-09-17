@@ -40,7 +40,7 @@ fun Portada(navController: NavHostController) {
                     Button(onClick = { /*TODO*/ }, modifier = Modifier.width(200.dp)) {
                         Text(text = stringResource(id = R.string.play))
                     }
-                    Spacer(modifier = Modifier.width(15.dp))
+                    Spacer(modifier = Modifier.width(25.dp))
                     Button(onClick = {
                         navController.navigate("NewPlayer")
                     }, modifier = Modifier.width(200.dp)) {
@@ -51,7 +51,7 @@ fun Portada(navController: NavHostController) {
                     Button(onClick = { /*TODO*/ }, modifier = Modifier.width(200.dp)) {
                         Text(text = stringResource(id = R.string.preferences))
                     }
-                    Spacer(modifier = Modifier.width(15.dp))
+                    Spacer(modifier = Modifier.width(25.dp))
                     Button(onClick = { /*TODO*/ }, modifier = Modifier.width(200.dp)) {
                         Text(text = stringResource(id = R.string.about))
                     }
