@@ -17,9 +17,8 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import com.example.playjuegosaaf.R
+import com.example.playjuegosaaf.ui.theme.FontTittle
 
 @Composable
 fun Portada(navController: NavHostController) {
@@ -33,7 +32,8 @@ fun Portada(navController: NavHostController) {
             ) {
                 Text(
                     text = stringResource(id = R.string.title),
-                    fontSize = 50.sp
+                    fontSize = 50.sp,
+                    fontFamily = FontTittle
                 )
                 Spacer(modifier = Modifier.size(50.dp))
                 Row {
@@ -67,7 +67,8 @@ fun Portada(navController: NavHostController) {
             ) {
                 Text(
                     text = stringResource(id = R.string.title),
-                    fontSize = 50.sp
+                    fontSize = 50.sp,
+                    fontFamily = FontTittle
                 )
                 Spacer(modifier = Modifier.size(50.dp))
                 Button(onClick = { /*TODO*/ }, modifier = Modifier.width(200.dp)) {
