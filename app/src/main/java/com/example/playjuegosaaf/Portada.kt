@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 
 @Composable
 fun Portada(navController: NavHostController) {
@@ -43,6 +44,7 @@ fun Portada(navController: NavHostController) {
                 Text(
                     text = stringResource(id = R.string.title),
                     fontSize = 50.sp,
+                    color = Color.White,
                     fontFamily = FontTittle
                 )
                 Spacer(modifier = Modifier.size(30.dp))
@@ -58,7 +60,7 @@ fun Portada(navController: NavHostController) {
                     }
                 }
                 Row {
-                    Button(onClick = { /*TODO*/ }, modifier = Modifier.width(200.dp)) {
+                    Button(onClick = { navController.navigate("Preferences")}, modifier = Modifier.width(200.dp)) {
                         Text(text = stringResource(id = R.string.preferences))
                     }
                     Spacer(modifier = Modifier.width(25.dp))
@@ -85,6 +87,7 @@ fun Portada(navController: NavHostController) {
                 Spacer(modifier = Modifier.size(50.dp))
                 Text(
                     text = stringResource(id = R.string.title),
+                    color = Color.White,
                     fontSize = 50.sp,
                     fontFamily = FontTittle
                 )
@@ -98,7 +101,7 @@ fun Portada(navController: NavHostController) {
                 }, modifier = Modifier.width(200.dp)) {
                     Text(text = stringResource(id = R.string.new_player))
                 }
-                Button(onClick = { /*TODO*/ }, modifier = Modifier.width(200.dp)) {
+                Button(onClick = { navController.navigate("Preferences") }, modifier = Modifier.width(200.dp)) {
                     Text(text = stringResource(id = R.string.preferences))
                 }
                 Button(onClick = { /*TODO*/ }, modifier = Modifier.width(200.dp)) {
