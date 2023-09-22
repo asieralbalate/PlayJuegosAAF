@@ -30,9 +30,9 @@ private val LightColorScheme = lightColorScheme(
     surface = LightTeal,
     onPrimary = Color.White,
     onSecondary = Color.Black,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
+    onTertiary = Color.Blue,
+    onBackground = Color.Green,
+    onSurface = Color.Yellow,
 )
 
 @Composable

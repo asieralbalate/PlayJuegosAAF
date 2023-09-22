@@ -11,4 +11,5 @@ val LightTeal = Color(0xFFB2DFDB)
 val LighterTeal = Color(0xFFCCFFFD)
 val DarkTeal = Color(0xFF00796B)
 val SecondaryYellow = Color(0xFFFFC107)
+val SecondaryYellowDarker = Color(0xFFF29727)
 
