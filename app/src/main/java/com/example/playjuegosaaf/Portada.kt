@@ -49,7 +49,7 @@ fun Portada(navController: NavHostController) {
                 )
                 Spacer(modifier = Modifier.size(30.dp))
                 Row {
-                    Button(onClick = { /*TODO*/ }, modifier = Modifier.width(200.dp)) {
+                    Button(onClick = {  navController.navigate("Play")}, modifier = Modifier.width(200.dp)) {
                         Text(text = stringResource(id = R.string.play))
                     }
                     Spacer(modifier = Modifier.width(25.dp))
@@ -70,7 +70,6 @@ fun Portada(navController: NavHostController) {
                 }
             }
         }
-
         else -> {
             Column(
                 modifier = Modifier.fillMaxSize(),
@@ -82,7 +81,6 @@ fun Portada(navController: NavHostController) {
                     contentDescription = "AccountImage",
                     Modifier
                         .size(130.dp)
-
                 )
                 Spacer(modifier = Modifier.size(50.dp))
                 Text(
@@ -92,7 +90,9 @@ fun Portada(navController: NavHostController) {
                     fontFamily = FontTittle
                 )
                 Spacer(modifier = Modifier.size(50.dp))
-                Button(onClick = { /*TODO*/ }, modifier = Modifier.width(200.dp)) {
+                Button(onClick = {
+                    navController.navigate("Play")
+                                 }, modifier = Modifier.width(200.dp)) {
                     Text(text = stringResource(id = R.string.play))
 
                 }
