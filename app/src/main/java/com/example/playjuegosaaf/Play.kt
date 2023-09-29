@@ -1,13 +1,17 @@
 package com.example.playjuegosaaf
 
 import android.content.res.Configuration
+import android.graphics.drawable.Icon
+import android.media.Image
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -29,14 +33,42 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.playjuegosaaf.ui.theme.Teal
+
+
 
 @Composable
 fun Play() {
     //Slider
+
+    val imageResIds = listOf(
+        R.drawable.games_angrybirds, // Reemplaza esto con el recurso de imagen real del juego 1
+        R.drawable.games_dragonfly,
+        R.drawable.games_hillclimbingracing,
+        R.drawable.games_radiantdefense,
+        R.drawable.games_pocketsoccer,
+        R.drawable.games_ninjump,
+        R.drawable.games_aircontrol,// Reemplaza esto con el recurso de imagen real del juego 2
+        // Agrega más recursos de imagen según sea necesario
+    )
+
+    val titles = listOf(
+        "Angry Birds",
+        "Dragon Fly",
+        "Hill Climb Racing",
+        "Radiant Defense",
+        "Pocket Soccer",
+        "Ninja Jump",
+        "Air Control",
+        // Agrega más títulos según sea necesario
+    )
+
+    val myOptions = getOptions(imageResIds, titles)
 
     var estadoRadio by rememberSaveable { mutableStateOf(" ") }
     var context = LocalContext.current
@@ -75,14 +107,7 @@ fun Play() {
                     modifier = Modifier.fillMaxSize()
                 ) {
                     Row (){
-                        val myOptions = getOptions(listOf(
-                            "Angry Birds",
-                            "Dragon Fly",
-                            "Hill Climbing Racing",
-                            "Radiant Defense",
-                            "Pocket Soccer",
-                            "Ninja Jump",
-                            "Air Control"))
+
                         Column() {
                             myOptions.forEach {
                                 MyCheckBox(it)
@@ -94,7 +119,7 @@ fun Play() {
             Box (Modifier.fillMaxSize(), contentAlignment = Alignment.BottomEnd){
                 FloatingActionButton(
                     onClick = {
-                        if (estadoRadio.contentEquals(" ")) {
+                        if (true) {
                             Toast.makeText(
                                 context,
                                 "No has pulsado ninguna opcion",
@@ -122,19 +147,21 @@ fun Play() {
     }
 }
 
-data class CheckInfo
-    (var title:String,
+data class CheckInfo(
+    var imageResId: Int,
+     var title:String,
      var selected:Boolean,
      var onCheckedChange:(Boolean)->Unit)
 
 @Composable
-fun getOptions(titles: List<String>): List<CheckInfo> {
-    return titles.map {
+fun getOptions(imageResIds: List<Int>, titles: List<String>): List<CheckInfo> {
+    return titles.mapIndexed { index, title ->
         var estadoCheck by rememberSaveable {
             mutableStateOf(false)
         }
         CheckInfo(
-            title = it,
+            imageResId = imageResIds.getOrElse(index) { R.drawable.games_aircontrol}, // Cambiar esto por el recurso de imagen real
+            title = title,
             selected = estadoCheck,
             onCheckedChange = { estadoCheck = it }
         )
@@ -142,20 +169,25 @@ fun getOptions(titles: List<String>): List<CheckInfo> {
 }
 @Composable
 fun MyCheckBox(checkInfo: CheckInfo) {
-    Column(
-        Modifier
-            .fillMaxSize()
-            .padding(20.dp),
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Image(
+            painter = painterResource(id = checkInfo.imageResId), // Cargar la imagen desde el recurso de imagen
+            contentDescription = "Game Image",
+            modifier = Modifier.size(48.dp) // Ajusta el tamaño de la imagen según tus necesidades
         )
-    {
-        Row() {
-            Checkbox(
-                checked = checkInfo.selected,
-                onCheckedChange = {
-                    checkInfo.onCheckedChange(!checkInfo.selected)
-                })
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(text = checkInfo.title, Modifier.padding(top = 12.dp))
-        }
+        Spacer(modifier = Modifier.width(8.dp))
+        Checkbox(
+            checked = checkInfo.selected,
+            onCheckedChange = {
+                checkInfo.onCheckedChange(it)
+            }
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+        Text(text = checkInfo.title)
     }
 }
