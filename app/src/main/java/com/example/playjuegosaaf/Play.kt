@@ -44,17 +44,16 @@ import com.example.playjuegosaaf.ui.theme.Teal
 
 @Composable
 fun Play() {
-    //Slider
 
     val imageResIds = listOf(
-        R.drawable.games_angrybirds, // Reemplaza esto con el recurso de imagen real del juego 1
+        R.drawable.games_angrybirds,
         R.drawable.games_dragonfly,
         R.drawable.games_hillclimbingracing,
         R.drawable.games_radiantdefense,
         R.drawable.games_pocketsoccer,
         R.drawable.games_ninjump,
-        R.drawable.games_aircontrol,// Reemplaza esto con el recurso de imagen real del juego 2
-        // Agrega más recursos de imagen según sea necesario
+        R.drawable.games_aircontrol,
+
     )
 
     val titles = listOf(
@@ -65,12 +64,10 @@ fun Play() {
         "Pocket Soccer",
         "Ninja Jump",
         "Air Control",
-        // Agrega más títulos según sea necesario
     )
 
     val myOptions = getOptions(imageResIds, titles)
-
-    var estadoRadio by rememberSaveable { mutableStateOf(" ") }
+    val noSelection = myOptions.none { it.selected }
     var context = LocalContext.current
     val configuration = LocalConfiguration.current
     when (configuration.orientation) {
@@ -82,6 +79,60 @@ fun Play() {
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.Start
             ) {
+                Spacer(modifier = Modifier.size(15.dp))
+                Row(
+                    Modifier
+                        .height(20.dp)
+                        .fillMaxSize(),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "Elige una opción"
+                    )
+                }
+                Surface(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    Row() {
+
+                        Column(modifier = Modifier.fillMaxWidth().padding(start = 10.dp)) {
+                            myOptions.forEach {
+                                MyCheckBox(it)
+                            }
+                        }
+                    }
+                }
+            }
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomEnd) {
+                FloatingActionButton(
+                    onClick = {
+                        if (noSelection) {
+                            Toast.makeText(
+                                context,
+                                "No has seleccionado ninguna opción",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        } else {
+                            val selectedOptions = myOptions.filter { it.selected }
+                            val message =
+                                "Has seleccionado ${selectedOptions.joinToString { it.title }}"
+                            Toast.makeText(
+                                context,
+                                message,
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    },
+                    shape = CircleShape,
+                    containerColor = Teal,
+                    modifier = Modifier
+                        .padding(horizontal = 10.dp, vertical = 10.dp)
+                        .height(50.dp)
+                        .width(50.dp)
+                )
+                {
+                    Icon(imageVector = Icons.Filled.Check, contentDescription = "check")
+                }
             }
         }
         else -> {
@@ -108,7 +159,7 @@ fun Play() {
                 ) {
                     Row (){
 
-                        Column() {
+                        Column(modifier = Modifier.fillMaxWidth().padding(start = 10.dp)) {
                             myOptions.forEach {
                                 MyCheckBox(it)
                             }
@@ -119,16 +170,18 @@ fun Play() {
             Box (Modifier.fillMaxSize(), contentAlignment = Alignment.BottomEnd){
                 FloatingActionButton(
                     onClick = {
-                        if (true) {
+                        if (noSelection) {
                             Toast.makeText(
                                 context,
-                                "No has pulsado ninguna opcion",
+                                "No has seleccionado ninguna opción",
                                 Toast.LENGTH_LONG
                             ).show()
                         } else {
+                            val selectedOptions = myOptions.filter { it.selected }
+                            val message = "Has seleccionado ${selectedOptions.joinToString { it.title }}"
                             Toast.makeText(
                                 context,
-                                "Has seleccionado con una puntuacion de ",
+                                message,
                                 Toast.LENGTH_LONG
                             ).show()
                         }
@@ -160,7 +213,7 @@ fun getOptions(imageResIds: List<Int>, titles: List<String>): List<CheckInfo> {
             mutableStateOf(false)
         }
         CheckInfo(
-            imageResId = imageResIds.getOrElse(index) { R.drawable.games_aircontrol}, // Cambiar esto por el recurso de imagen real
+            imageResId = imageResIds.getOrElse(index) { R.drawable.games_aircontrol},
             title = title,
             selected = estadoCheck,
             onCheckedChange = { estadoCheck = it }
@@ -170,15 +223,15 @@ fun getOptions(imageResIds: List<Int>, titles: List<String>): List<CheckInfo> {
 @Composable
 fun MyCheckBox(checkInfo: CheckInfo) {
     Row(
-        modifier = Modifier
+        modifier = Modifier.height(80.dp)
             .fillMaxWidth()
             .padding(vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
-            painter = painterResource(id = checkInfo.imageResId), // Cargar la imagen desde el recurso de imagen
+            painter = painterResource(id = checkInfo.imageResId),
             contentDescription = "Game Image",
-            modifier = Modifier.size(48.dp) // Ajusta el tamaño de la imagen según tus necesidades
+            modifier = Modifier.size(58.dp)
         )
         Spacer(modifier = Modifier.width(8.dp))
         Checkbox(
