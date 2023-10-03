@@ -3,6 +3,7 @@ package com.example.playjuegosaaf
 import android.content.res.Configuration
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,7 +18,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -46,10 +50,13 @@ fun NewPlayer() {
     var nickname by remember { mutableStateOf("") }
     var phoneNumber by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
+    var selectedText by remember { mutableStateOf("") }
     var errorTextName by rememberSaveable { mutableStateOf("*Obligatorio") }
     var errorTextNickame by rememberSaveable { mutableStateOf("*Obligatorio") }
+    var expanded by rememberSaveable { mutableStateOf(false) }
     var peso1 = 1f
     var peso2 = 2f
+    val phones = listOf("675435622", "687543458", "678412984", "678564341", "609128309")
     val configuration = LocalConfiguration.current
     when (configuration.orientation) {
         Configuration.ORIENTATION_LANDSCAPE -> {
@@ -413,26 +420,43 @@ fun NewPlayer() {
                         .height(60.dp)
                         .fillMaxSize()
                 ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.camera),
-                        contentDescription = "CameraImage",
-                        Modifier
-                            .weight(peso1)
-                            .fillMaxSize()
-                    )
-                    TextField(
-                        value = "Phone Number",
-                        onValueChange = { phoneNumber = it },
-                        Modifier
-                            .weight(peso2)
-                            .padding(end = 10.dp),
-                        shape = RoundedCornerShape(20.dp, 20.dp, 0.dp, 0.dp),
-                        colors = TextFieldDefaults.textFieldColors(
-                            containerColor = LighterTeal,
-                            focusedIndicatorColor = SecondaryYellow
+                    Column (modifier = Modifier.weight(peso1)){
+                        Image(
+                            painter = painterResource(id = R.drawable.camera),
+                            contentDescription = "CameraImage",
+                            Modifier
+                                .fillMaxSize()
                         )
+                    }
+                    Column (modifier = Modifier.weight(peso2)){
+                        TextField(value = selectedText,
+                            onValueChange = {selectedText = it},
+                            enabled = false,
+                            label = { Text(text = "Phone")},
+                            modifier = Modifier
+                                .padding(end = 10.dp)
+                                .clickable { expanded = true },
+                            shape = RoundedCornerShape(20.dp, 20.dp, 0.dp, 0.dp),
+                            colors = TextFieldDefaults.textFieldColors(
+                                textColor = Color.Black,
+                                containerColor = LighterTeal,
+                                focusedIndicatorColor = SecondaryYellow
+                            )
 
-                    )
+                        )
+                        DropdownMenu(expanded = expanded, onDismissRequest = {expanded = false}) {
+                            phones.forEach { phone ->
+                                DropdownMenuItem(
+                                    text = { Text(text = phone)},
+                                    onClick = {
+                                        selectedText = phone
+                                        expanded = false
+                                    })
+
+                            }
+                        }
+                    }
+
                 }
                 Spacer(modifier = Modifier.size(15.dp))
                 Row(

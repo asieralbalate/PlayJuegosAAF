@@ -64,7 +64,7 @@ fun Portada(navController: NavHostController) {
                         Text(text = stringResource(id = R.string.preferences))
                     }
                     Spacer(modifier = Modifier.width(25.dp))
-                    Button(onClick = { /*TODO*/ }, modifier = Modifier.width(200.dp)) {
+                    Button(onClick = {navController.navigate("About")  }, modifier = Modifier.width(200.dp)) {
                         Text(text = stringResource(id = R.string.about))
                     }
                 }
@@ -104,7 +104,7 @@ fun Portada(navController: NavHostController) {
                 Button(onClick = { navController.navigate("Preferences") }, modifier = Modifier.width(200.dp)) {
                     Text(text = stringResource(id = R.string.preferences))
                 }
-                Button(onClick = { /*TODO*/ }, modifier = Modifier.width(200.dp)) {
+                Button(onClick = { navController.navigate("About")  }, modifier = Modifier.width(200.dp)) {
                     Text(text = stringResource(id = R.string.about))
                 }
             }

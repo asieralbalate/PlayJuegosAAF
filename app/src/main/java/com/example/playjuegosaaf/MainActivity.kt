@@ -29,6 +29,7 @@ class MainActivity : ComponentActivity() {
                         composable("NewPlayer") { NewPlayer() }
                         composable("Preferences") {Preferences()}
                         composable("Play") { Play() }
+                        composable("About") { About() }
                         composable("Portada") { Portada(navController = navController) }
                     }
                 }
