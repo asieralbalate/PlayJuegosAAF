@@ -39,7 +39,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.playjuegosaaf.ui.theme.Teal
-
+import java.util.ArrayList
 
 
 @Composable
@@ -53,7 +53,6 @@ fun Play() {
         R.drawable.games_pocketsoccer,
         R.drawable.games_ninjump,
         R.drawable.games_aircontrol,
-
     )
 
     val titles = listOf(
@@ -80,21 +79,10 @@ fun Play() {
                 horizontalAlignment = Alignment.Start
             ) {
                 Spacer(modifier = Modifier.size(15.dp))
-                Row(
-                    Modifier
-                        .height(20.dp)
-                        .fillMaxSize(),
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Text(
-                        text = "Elige una opción"
-                    )
-                }
                 Surface(
                     modifier = Modifier.fillMaxSize()
                 ) {
                     Row() {
-
                         Column(modifier = Modifier.fillMaxWidth().padding(start = 10.dp)) {
                             myOptions.forEach {
                                 MyCheckBox(it)
@@ -144,16 +132,6 @@ fun Play() {
                 horizontalAlignment = Alignment.Start
             ) {
                 Spacer(modifier = Modifier.size(15.dp))
-                Row(
-                    Modifier
-                        .height(20.dp)
-                        .fillMaxSize(),
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Text(
-                        text = "Elige una opción"
-                    )
-                }
                 Surface(
                     modifier = Modifier.fillMaxSize()
                 ) {

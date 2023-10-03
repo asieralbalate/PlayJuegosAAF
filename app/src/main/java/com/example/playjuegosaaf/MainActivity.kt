@@ -31,7 +31,6 @@ class MainActivity : ComponentActivity() {
                         composable("Play") { Play() }
                         composable("Portada") { Portada(navController = navController) }
                     }
-
                 }
             }
         }

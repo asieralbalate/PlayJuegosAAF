@@ -104,10 +104,10 @@ fun Preferences() {
                         ),
                     )
                 }
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(20.dp))
                 Text(text = "Plataformas: ", modifier = Modifier.padding(start = 20.dp, bottom = 10.dp), fontWeight = FontWeight.Bold)
                 Row {
-                    Spacer(modifier = Modifier.width(20.dp))
+                    Spacer(modifier = Modifier.width(10.dp))
 
 
                     MyFilterChips(name = estadoChip, onItemSelected = {estadoChip = it;  Toast.makeText(
@@ -197,7 +197,7 @@ fun Preferences() {
                         ),
                     )
                 }
-
+                Spacer(modifier = Modifier.height(30.dp))
                 Text(text = "Plataformas: ", modifier = Modifier.padding(start = 20.dp, bottom = 10.dp), fontWeight = FontWeight.Bold)
                 Row {
                     Spacer(modifier = Modifier.width(20.dp))
