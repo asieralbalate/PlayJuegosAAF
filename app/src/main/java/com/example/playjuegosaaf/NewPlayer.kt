@@ -209,6 +209,7 @@ fun NewPlayer() {
                             .padding(end = 10.dp),
                         shape = RoundedCornerShape(20.dp, 20.dp, 0.dp, 0.dp),
                         colors = TextFieldDefaults.textFieldColors(
+                            textColor = Color.Black,
                             containerColor = LighterTeal,
                             focusedIndicatorColor = SecondaryYellow
                         )
