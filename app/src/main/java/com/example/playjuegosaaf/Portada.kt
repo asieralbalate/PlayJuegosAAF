@@ -49,7 +49,10 @@ fun Portada(navController: NavHostController) {
                 )
                 Spacer(modifier = Modifier.size(30.dp))
                 Row {
-                    Button(onClick = {  navController.navigate("Play")}, modifier = Modifier.width(200.dp)) {
+                    Button(
+                        onClick = { navController.navigate("Play") },
+                        modifier = Modifier.width(200.dp)
+                    ) {
                         Text(text = stringResource(id = R.string.play))
                     }
                     Spacer(modifier = Modifier.width(25.dp))
@@ -60,16 +63,23 @@ fun Portada(navController: NavHostController) {
                     }
                 }
                 Row {
-                    Button(onClick = { navController.navigate("Preferences")}, modifier = Modifier.width(200.dp)) {
+                    Button(
+                        onClick = { navController.navigate("Preferences") },
+                        modifier = Modifier.width(200.dp)
+                    ) {
                         Text(text = stringResource(id = R.string.preferences))
                     }
                     Spacer(modifier = Modifier.width(25.dp))
-                    Button(onClick = {navController.navigate("About")  }, modifier = Modifier.width(200.dp)) {
+                    Button(
+                        onClick = { navController.navigate("About") },
+                        modifier = Modifier.width(200.dp)
+                    ) {
                         Text(text = stringResource(id = R.string.about))
                     }
                 }
             }
         }
+
         else -> {
             Column(
                 modifier = Modifier.fillMaxSize(),
@@ -92,7 +102,7 @@ fun Portada(navController: NavHostController) {
                 Spacer(modifier = Modifier.size(50.dp))
                 Button(onClick = {
                     navController.navigate("Play")
-                                 }, modifier = Modifier.width(200.dp)) {
+                }, modifier = Modifier.width(200.dp)) {
                     Text(text = stringResource(id = R.string.play))
 
                 }
@@ -101,10 +111,16 @@ fun Portada(navController: NavHostController) {
                 }, modifier = Modifier.width(200.dp)) {
                     Text(text = stringResource(id = R.string.new_player))
                 }
-                Button(onClick = { navController.navigate("Preferences") }, modifier = Modifier.width(200.dp)) {
+                Button(
+                    onClick = { navController.navigate("Preferences") },
+                    modifier = Modifier.width(200.dp)
+                ) {
                     Text(text = stringResource(id = R.string.preferences))
                 }
-                Button(onClick = { navController.navigate("About")  }, modifier = Modifier.width(200.dp)) {
+                Button(
+                    onClick = { navController.navigate("About") },
+                    modifier = Modifier.width(200.dp)
+                ) {
                     Text(text = stringResource(id = R.string.about))
                 }
             }

@@ -48,7 +48,6 @@ fun NewPlayer() {
     var name by remember { mutableStateOf("") }
     var surname by remember { mutableStateOf("") }
     var nickname by remember { mutableStateOf("") }
-    var phoneNumber by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var selectedText by remember { mutableStateOf("") }
     var errorTextName by rememberSaveable { mutableStateOf("*Obligatorio") }
@@ -89,8 +88,7 @@ fun NewPlayer() {
                         label = { Text(text = "Name") },
                         shape = RoundedCornerShape(20.dp, 20.dp, 0.dp, 0.dp),
                         colors = TextFieldDefaults.textFieldColors(
-                            containerColor = LighterTeal,
-                            focusedIndicatorColor = SecondaryYellow
+                            containerColor = LighterTeal, focusedIndicatorColor = SecondaryYellow
                         )
                     )
                 }
@@ -124,10 +122,8 @@ fun NewPlayer() {
                         label = { Text(text = "Surname") },
                         shape = RoundedCornerShape(20.dp, 20.dp, 0.dp, 0.dp),
                         colors = TextFieldDefaults.textFieldColors(
-                            containerColor = LighterTeal,
-                            focusedIndicatorColor = SecondaryYellow
+                            containerColor = LighterTeal, focusedIndicatorColor = SecondaryYellow
                         )
-
                     )
                 }
                 Spacer(modifier = Modifier.size(15.dp))
@@ -142,8 +138,7 @@ fun NewPlayer() {
                         label = { Text(text = "Nickname") },
                         shape = RoundedCornerShape(20.dp, 20.dp, 0.dp, 0.dp),
                         colors = TextFieldDefaults.textFieldColors(
-                            containerColor = LighterTeal,
-                            focusedIndicatorColor = SecondaryYellow
+                            containerColor = LighterTeal, focusedIndicatorColor = SecondaryYellow
                         )
                     )
                 }
@@ -176,12 +171,9 @@ fun NewPlayer() {
                             .fillMaxSize(),
                     )
                     Button(
-                        onClick = { /*TODO*/ },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = SecondaryYellow,
-                            contentColor = Color.Black
-                        ),
-                        modifier = Modifier
+                        onClick = { /*TODO*/ }, colors = ButtonDefaults.buttonColors(
+                            containerColor = SecondaryYellow, contentColor = Color.Black
+                        ), modifier = Modifier
                             .weight(peso1)
                             .padding(end = 35.dp)
                     ) {
@@ -194,27 +186,40 @@ fun NewPlayer() {
                         .height(60.dp)
                         .fillMaxSize()
                 ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.camera),
-                        contentDescription = "CameraImage",
-                        Modifier
-                            .weight(peso1)
-                            .fillMaxSize()
-                    )
-                    TextField(
-                        value = "Phone Number",
-                        onValueChange = { phoneNumber = it },
-                        Modifier
-                            .weight(peso2)
-                            .padding(end = 10.dp),
-                        shape = RoundedCornerShape(20.dp, 20.dp, 0.dp, 0.dp),
-                        colors = TextFieldDefaults.textFieldColors(
-                            textColor = Color.Black,
-                            containerColor = LighterTeal,
-                            focusedIndicatorColor = SecondaryYellow
+                    Column(modifier = Modifier.weight(peso1)) {
+                        Image(
+                            painter = painterResource(id = R.drawable.camera),
+                            contentDescription = "CameraImage",
+                            Modifier.fillMaxSize()
                         )
+                    }
+                    Column(modifier = Modifier.weight(peso2)) {
+                        TextField(
+                            value = selectedText,
+                            onValueChange = { selectedText = it },
+                            enabled = false,
+                            label = { Text(text = "Phone") },
+                            modifier = Modifier
+                                .padding(end = 10.dp)
+                                .fillMaxWidth()
+                                .clickable { expanded = true },
+                            shape = RoundedCornerShape(20.dp, 20.dp, 0.dp, 0.dp),
+                            colors = TextFieldDefaults.textFieldColors(
+                                textColor = Color.Black,
+                                containerColor = LighterTeal,
+                                focusedIndicatorColor = SecondaryYellow
+                            )
+                        )
+                        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+                            phones.forEach { phone ->
+                                DropdownMenuItem(text = { Text(text = phone) }, onClick = {
+                                    selectedText = phone
+                                    expanded = false
+                                })
 
-                    )
+                            }
+                        }
+                    }
                 }
                 Spacer(modifier = Modifier.size(15.dp))
                 Row(
@@ -238,8 +243,7 @@ fun NewPlayer() {
                         label = { Text(text = "Email") },
                         shape = RoundedCornerShape(20.dp, 20.dp, 0.dp, 0.dp),
                         colors = TextFieldDefaults.textFieldColors(
-                            containerColor = LighterTeal,
-                            focusedIndicatorColor = SecondaryYellow
+                            containerColor = LighterTeal, focusedIndicatorColor = SecondaryYellow
                         )
                     )
                 }
@@ -266,10 +270,8 @@ fun NewPlayer() {
                                 errorTextName = "Listo"
                                 errorTextNickame = "Listo"
                             }
-                        },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = DarkTeal,
-                            contentColor = Color.White
+                        }, colors = ButtonDefaults.buttonColors(
+                            containerColor = DarkTeal, contentColor = Color.White
                         )
 
                     ) {
@@ -279,8 +281,6 @@ fun NewPlayer() {
                 Spacer(modifier = Modifier.size(15.dp))
             }
         }
-
-
         else -> {
             Column(
                 modifier = Modifier
@@ -303,7 +303,6 @@ fun NewPlayer() {
                             .weight(peso1)
                             .fillMaxSize()
                     )
-
                     TextField(
                         value = name,
                         onValueChange = { name = it },
@@ -313,8 +312,7 @@ fun NewPlayer() {
                         label = { Text(text = "Name") },
                         shape = RoundedCornerShape(20.dp, 20.dp, 0.dp, 0.dp),
                         colors = TextFieldDefaults.textFieldColors(
-                            containerColor = LighterTeal,
-                            focusedIndicatorColor = SecondaryYellow
+                            containerColor = LighterTeal, focusedIndicatorColor = SecondaryYellow
                         )
                     )
                 }
@@ -337,7 +335,6 @@ fun NewPlayer() {
                     Modifier
                         .height(60.dp)
                         .fillMaxSize()
-
                 ) {
                     Spacer(modifier = Modifier.weight(peso1))
                     TextField(
@@ -349,8 +346,7 @@ fun NewPlayer() {
                         label = { Text(text = "Surname") },
                         shape = RoundedCornerShape(20.dp, 20.dp, 0.dp, 0.dp),
                         colors = TextFieldDefaults.textFieldColors(
-                            containerColor = LighterTeal,
-                            focusedIndicatorColor = SecondaryYellow
+                            containerColor = LighterTeal, focusedIndicatorColor = SecondaryYellow
                         )
                     )
                 }
@@ -371,14 +367,14 @@ fun NewPlayer() {
                         label = { Text(text = "Nickname") },
                         shape = RoundedCornerShape(20.dp, 20.dp, 0.dp, 0.dp),
                         colors = TextFieldDefaults.textFieldColors(
-                            containerColor = LighterTeal,
-                            focusedIndicatorColor = SecondaryYellow
+                            containerColor = LighterTeal, focusedIndicatorColor = SecondaryYellow
                         )
                     )
                 }
                 Row(Modifier.height(20.dp)) {
                     Spacer(modifier = Modifier.weight(peso1))
-                    Text(text = errorTextNickame,
+                    Text(
+                        text = errorTextNickame,
                         modifier = Modifier
                             .weight(peso2)
                             .padding(start = 15.dp),
@@ -387,7 +383,8 @@ fun NewPlayer() {
                         } else {
                             Color.Black
                         },
-                        fontSize = 12.sp)
+                        fontSize = 12.sp
+                    )
                 }
                 Row(
                     Modifier
@@ -403,12 +400,9 @@ fun NewPlayer() {
                             .fillMaxSize(),
                     )
                     Button(
-                        onClick = { /*TODO*/ },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = SecondaryYellow,
-                            contentColor = Color.Black
-                        ),
-                        modifier = Modifier
+                        onClick = { /*TODO*/ }, colors = ButtonDefaults.buttonColors(
+                            containerColor = SecondaryYellow, contentColor = Color.Black
+                        ), modifier = Modifier
                             .weight(peso1)
                             .padding(end = 35.dp)
                     ) {
@@ -421,19 +415,19 @@ fun NewPlayer() {
                         .height(60.dp)
                         .fillMaxSize()
                 ) {
-                    Column (modifier = Modifier.weight(peso1)){
+                    Column(modifier = Modifier.weight(peso1)) {
                         Image(
                             painter = painterResource(id = R.drawable.camera),
                             contentDescription = "CameraImage",
-                            Modifier
-                                .fillMaxSize()
+                            Modifier.fillMaxSize()
                         )
                     }
-                    Column (modifier = Modifier.weight(peso2)){
-                        TextField(value = selectedText,
-                            onValueChange = {selectedText = it},
+                    Column(modifier = Modifier.weight(peso2)) {
+                        TextField(
+                            value = selectedText,
+                            onValueChange = { selectedText = it },
                             enabled = false,
-                            label = { Text(text = "Phone")},
+                            label = { Text(text = "Phone") },
                             modifier = Modifier
                                 .padding(end = 10.dp)
                                 .clickable { expanded = true },
@@ -445,19 +439,16 @@ fun NewPlayer() {
                             )
 
                         )
-                        DropdownMenu(expanded = expanded, onDismissRequest = {expanded = false}) {
+                        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
                             phones.forEach { phone ->
-                                DropdownMenuItem(
-                                    text = { Text(text = phone)},
-                                    onClick = {
-                                        selectedText = phone
-                                        expanded = false
-                                    })
+                                DropdownMenuItem(text = { Text(text = phone) }, onClick = {
+                                    selectedText = phone
+                                    expanded = false
+                                })
 
                             }
                         }
                     }
-
                 }
                 Spacer(modifier = Modifier.size(15.dp))
                 Row(
@@ -481,8 +472,7 @@ fun NewPlayer() {
                         label = { Text(text = "Email") },
                         shape = RoundedCornerShape(20.dp, 20.dp, 0.dp, 0.dp),
                         colors = TextFieldDefaults.textFieldColors(
-                            containerColor = LighterTeal,
-                            focusedIndicatorColor = SecondaryYellow
+                            containerColor = LighterTeal, focusedIndicatorColor = SecondaryYellow
                         )
                     )
                 }
@@ -509,12 +499,9 @@ fun NewPlayer() {
                                 errorTextName = "Listo"
                                 errorTextNickame = "Listo"
                             }
-                        },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = DarkTeal,
-                            contentColor = Color.White
+                        }, colors = ButtonDefaults.buttonColors(
+                            containerColor = DarkTeal, contentColor = Color.White
                         )
-
                     ) {
                         Text(text = "Add new player")
                     }

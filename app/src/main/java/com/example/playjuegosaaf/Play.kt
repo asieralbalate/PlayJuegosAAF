@@ -44,7 +44,6 @@ import java.util.ArrayList
 
 @Composable
 fun Play() {
-
     val imageResIds = listOf(
         R.drawable.games_angrybirds,
         R.drawable.games_dragonfly,
@@ -54,7 +53,6 @@ fun Play() {
         R.drawable.games_ninjump,
         R.drawable.games_aircontrol,
     )
-
     val titles = listOf(
         "Angry Birds",
         "Dragon Fly",
@@ -64,7 +62,6 @@ fun Play() {
         "Ninja Jump",
         "Air Control",
     )
-
     val myOptions = getOptions(imageResIds, titles)
     val noSelection = myOptions.none { it.selected }
     var context = LocalContext.current

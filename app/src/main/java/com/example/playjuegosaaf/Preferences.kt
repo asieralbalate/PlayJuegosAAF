@@ -96,28 +96,32 @@ fun Preferences() {
                         onValueChange = { selection = it },
                         steps = 9,
                         colors = SliderDefaults.colors(
-                            thumbColor = Teal, // Color del pulgar
-                            activeTrackColor = Teal, // Color de la línea activa (donde se encuentra el pulgar)
-                            inactiveTrackColor = LighterTeal, // Color de la línea inactiva
-                            activeTickColor = LightTeal, // Color de las marcas en la línea activa
-                            inactiveTickColor = Color.Black, // Color de las marcas en la línea inactiva
+                            thumbColor = Teal,
+                            activeTrackColor = Teal,
+                            inactiveTrackColor = LighterTeal,
+                            activeTickColor = LightTeal,
+                            inactiveTickColor = Color.Black,
                         ),
                     )
                 }
                 Spacer(modifier = Modifier.height(20.dp))
-                Text(text = "Plataformas: ", modifier = Modifier.padding(start = 20.dp, bottom = 10.dp), fontWeight = FontWeight.Bold)
+                Text(
+                    text = "Plataformas: ",
+                    modifier = Modifier.padding(start = 20.dp, bottom = 10.dp),
+                    fontWeight = FontWeight.Bold
+                )
                 Row {
                     Spacer(modifier = Modifier.width(10.dp))
-
-
-                    MyFilterChips(name = estadoChip, onItemSelected = {estadoChip = it;  Toast.makeText(
+                    MyFilterChips(name = estadoChip, onItemSelected = {
+                        estadoChip = it; Toast.makeText(
                         context,
                         if (!estadoChip.contentEquals(" ")) {
                             "Has seleccionado $estadoChip"
                         } else {
                             "No has pulsado ninguna opción"
                         }, Toast.LENGTH_LONG
-                    ).show()})
+                    ).show()
+                    })
                 }
             }
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomEnd) {
@@ -147,7 +151,7 @@ fun Preferences() {
                     Image(
                         painter = painterResource(id = R.drawable.tick),
                         contentDescription = "Tick",
-                        )
+                    )
                 }
             }
         }
@@ -198,21 +202,26 @@ fun Preferences() {
                     )
                 }
                 Spacer(modifier = Modifier.height(30.dp))
-                Text(text = "Plataformas: ", modifier = Modifier.padding(start = 20.dp, bottom = 10.dp), fontWeight = FontWeight.Bold)
+                Text(
+                    text = "Plataformas: ",
+                    modifier = Modifier.padding(start = 20.dp, bottom = 10.dp),
+                    fontWeight = FontWeight.Bold
+                )
                 Row {
                     Spacer(modifier = Modifier.width(20.dp))
 
 
-                    MyFilterChips(name = estadoChip, onItemSelected = {estadoChip = it;  Toast.makeText(
+                    MyFilterChips(name = estadoChip, onItemSelected = {
+                        estadoChip = it; Toast.makeText(
                         context,
                         if (!estadoChip.contentEquals(" ")) {
                             "Has seleccionado $estadoChip"
                         } else {
                             "No has pulsado ninguna opción"
                         }, Toast.LENGTH_LONG
-                    ).show()})
+                    ).show()
+                    })
                 }
-
             }
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomEnd) {
                 FloatingActionButton(
@@ -241,7 +250,7 @@ fun Preferences() {
                     Image(
                         painter = painterResource(id = R.drawable.tick),
                         contentDescription = "Tick",
-                        )
+                    )
                 }
             }
         }
@@ -304,66 +313,89 @@ fun MyFilterChips(name: String, onItemSelected: (String) -> Unit) {
             .fillMaxSize()
     ) {
         Column {
-            FilterChip(selected = name == "PS4", onClick = {
-                onItemSelected("PS4")
-            }, label = { Text(text = "PS4") }, modifier = Modifier.padding(top = 12.dp, end = 5.dp),
+            FilterChip(selected = name == "PS4",
+                onClick = {
+                    onItemSelected("PS4")
+                },
+                label = { Text(text = "PS4") },
+                modifier = Modifier.padding(top = 12.dp, end = 5.dp),
                 leadingIcon =
-                {if (name == "PS4") {
-                    Icon(imageVector = Icons.Filled.Check, contentDescription = "check")
-                } else {
-                    false
-                }}
+                {
+                    if (name == "PS4") {
+                        Icon(imageVector = Icons.Filled.Check, contentDescription = "check")
+                    } else {
+                        false
+                    }
+                }
             )
         }
         Column {
-            FilterChip(selected = name == "XBOX", onClick = {
-                onItemSelected("XBOX")
-            }, label = { Text(text = "XBOX") }, modifier = Modifier.padding(top = 12.dp, end = 5.dp),
+            FilterChip(selected = name == "XBOX",
+                onClick = {
+                    onItemSelected("XBOX")
+                },
+                label = { Text(text = "XBOX") },
+                modifier = Modifier.padding(top = 12.dp, end = 5.dp),
                 leadingIcon =
-                {if (name == "XBOX") {
-                    Icon(imageVector = Icons.Filled.Check, contentDescription = "check")
-                } else {
-                    false
-                }}
+                {
+                    if (name == "XBOX") {
+                        Icon(imageVector = Icons.Filled.Check, contentDescription = "check")
+                    } else {
+                        false
+                    }
+                }
             )
         }
         Column {
-            FilterChip(selected = name == "3DS", onClick = {
-                onItemSelected("3DS")
-            }, label = { Text(text = "3DS") }, modifier = Modifier.padding(top = 12.dp, end = 5.dp),
+            FilterChip(selected = name == "3DS",
+                onClick = {
+                    onItemSelected("3DS")
+                },
+                label = { Text(text = "3DS") },
+                modifier = Modifier.padding(top = 12.dp, end = 5.dp),
                 leadingIcon =
-                {if (name == "3DS") {
-                    Icon(imageVector = Icons.Filled.Check, contentDescription = "check")
-                } else {
-                    false
-                }}
+                {
+                    if (name == "3DS") {
+                        Icon(imageVector = Icons.Filled.Check, contentDescription = "check")
+                    } else {
+                        false
+                    }
+                }
             )
         }
         Column {
-            FilterChip(selected = name == "WII", onClick = {
-                onItemSelected("WII")
-            }, label = { Text(text = "WII") }, modifier = Modifier.padding(top = 12.dp, end = 5.dp),
+            FilterChip(selected = name == "WII",
+                onClick = {
+                    onItemSelected("WII")
+                },
+                label = { Text(text = "WII") },
+                modifier = Modifier.padding(top = 12.dp, end = 5.dp),
                 leadingIcon =
-                {if (name == "WII") {
-                    Icon(imageVector = Icons.Filled.Check, contentDescription = "check")
-                } else {
-                    false
-                }}
+                {
+                    if (name == "WII") {
+                        Icon(imageVector = Icons.Filled.Check, contentDescription = "check")
+                    } else {
+                        false
+                    }
+                }
             )
         }
         Column {
-            FilterChip(selected = name == "WIIU", onClick = {
-                onItemSelected("WIIU")
-            }, label = { Text(text = "WIIU") }, modifier = Modifier.padding(top = 12.dp, end = 5.dp),
+            FilterChip(selected = name == "WIIU",
+                onClick = {
+                    onItemSelected("WIIU")
+                },
+                label = { Text(text = "WIIU") },
+                modifier = Modifier.padding(top = 12.dp, end = 5.dp),
                 leadingIcon =
-                {if (name == "WIIU") {
-                    Icon(imageVector = Icons.Filled.Check, contentDescription = "check")
-                } else {
-                    false
-                }}
+                {
+                    if (name == "WIIU") {
+                        Icon(imageVector = Icons.Filled.Check, contentDescription = "check")
+                    } else {
+                        false
+                    }
+                }
             )
         }
     }
 }
-
-

@@ -37,6 +37,7 @@ fun About() {
                 }
             }
         }
+
         else -> {
             LazyColumn(
             ) {
@@ -116,16 +117,17 @@ fun ItemAbout(aboutData: AboutData) {
                         Toast.LENGTH_LONG
                     )
                     .show()
-            }
-        ,
+            },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
-        Row (modifier = Modifier
-            .weight(peso)
-            .fillMaxWidth(),
+        Row(
+            modifier = Modifier
+                .weight(peso)
+                .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center){
+            horizontalArrangement = Arrangement.Center
+        ) {
             Image(
                 painter = painterResource(id = aboutData.photo),
                 contentDescription = "Game Image",
@@ -134,12 +136,13 @@ fun ItemAbout(aboutData: AboutData) {
                     .padding(4.dp)
             )
         }
-
-        Column (modifier = Modifier
-            .weight(peso)
-            .fillMaxWidth(),
+        Column(
+            modifier = Modifier
+                .weight(peso)
+                .fillMaxWidth(),
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally) {
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             Text(text = aboutData.namesAbout)
             Text(text = aboutData.pointsAbout)
         }

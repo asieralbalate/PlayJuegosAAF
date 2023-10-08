@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = "Portada") {
                         composable("NewPlayer") { NewPlayer() }
-                        composable("Preferences") {Preferences()}
+                        composable("Preferences") { Preferences() }
                         composable("Play") { Play() }
                         composable("About") { About() }
                         composable("Portada") { Portada(navController = navController) }
@@ -36,7 +36,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
 }
 
 @Preview(showBackground = true)
